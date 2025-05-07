@@ -1,0 +1,90 @@
+what is spring framework
+
+it is set of libraries.
+
+before it was spring -> spring mvc -> spring boot -> spring boot 2.x
+
+what is jvm architecture
+java virtual machine
+java is platform independent coding language true at certain extent
+whenever we write code it goes in .java ->.class->bytecode it excute on jvm
+we have install jvm to run that byte code
+anything which is in jvm is supported by spring
+like java kotlin
+
+jdk->jvm->jre
+-------------------------------------------------
+Rest api and http
+
+MVC architecture
+before people use to develop web application in java
+then it comes java EE
+java EE had serverlet
+and jdbc
+serverlet creates routing for apis it is con
+jdbc java database connection connect java application to data base
+jdbc evolve to hibernate ->it evolve to spring data jpa
+jpa java persistence api
+-------------------------------------------------
+now in application we have 3 component
+front end -> back end-> data base
+all connect each other
+
+monolith one big combined application where a single code base
+contain both backend and front end it was era of jsp serverlet
+jsp - java server pages
+mvc model view controller
+single code base contain schema ui and back end
+we had web inf ->xml -> .jsp pages
+mvc architecture is not followed any more
+-------------------------------------------------
+code flow and structure
+we will divide code in certain pattern
+controller
+service
+repository
+model
+exception
+etc
+
+controller contain api these are first point of contatct
+for any application no buisness logic inside
+it wont talk to data base
+they will majorly handle validation input data data cleanup d
+authorization authentication
+any idea of data cleanup
+
+service layer it will contain all business logic
+it will also wont talk to data base
+
+repository or dao this layer talk to db it does not contain any business logic
+------------------------------------------------
+DI dependency injection and IOC container
+** constructor is used to create a object while injecting something inside it
+IOC inversion of control
+As a developer i have full control on my code but spring takes the control
+of dependency from developer that is inversion of control
+
+there is something called ioc container where spring makes the object ready for use
+@Repository
+@autowired
+@RestController
+
+So whenever the application start spring crates the object for all annotated class
+and store them in ioc container
+
+@Autowired this tells the application to required object
+according to autowire spring do dependency injection
+
+what is ioc container it is space allotted for object that is created and
+will be use later when needed by autowired
+---------------------------------------------------
+@Component marks class for object creation(object of these classes once created
+and stored for use in ioc container)
+@Repository same work but user readability
+
+
+
+
+
+

@@ -1,0 +1,126 @@
+we are going to create multiple microservice
+these service will communicate with each other
+
+product service <-> user service <-> payment service
+
+product service -> fundamentals and orm jpa calling 3rd party
+user service authorisation and authentication
+payment service -> payment gateway
+
+------------------------------------------
+calling 3rd party apis
+write the mechanism to call get all product
+and get product by id
+create our own apis and get product apis which will internally call and show the product
+
+clint ->product service -> Fakestore
+
+-------------------------------------------
+DAO is data access object that is repository
+DTO is data transfer object, no business logic no validation
+no utility no schema representation
+
+API there is method that give input and give output
+api help to interact with that function that interact in server
+
+format that in which we give input and give output data
+is "json"
+json javascript object notation
+rest representational state transfer
+----------------------------------------------
+if we create a object its in memory its in heap memory
+class car{
+int engine size
+String number
+double price
+
+
+}
+json-> entire object present in these curly braces
+and entire attribute name will become key
+json is collection of key value pair
+{
+"enginesize" : 2000,
+"number": "ABCD",
+"Price":1000000.20
+}
+same format or it wil break, it also can take array
+--------------------------------------------------
+what we need to do
+product service to talk with fakestore
+first we need to do is create request and response dto
+communication will be happen in form of json
+and json need object and it will be created by class
+
+how will we create that response dto
+first we checked the product of fake store and look for what
+all needed to create is there any other json inside the responce of
+ main json
+ its rating so we create rating class and in rating class
+we will give all the attribute
+then we will create main response as fakeStoreProduct
+and create all attribute as private with getter and setter
+----------------------------------------------------
+we have client package created
+we discussed 4 layers
+controller contain apis
+service contain business logic
+repository talks to db does crud
+models contain schema
+client with other service  ex- product service talk with user service
+
+Product service is talking to FakeStore service
+we will create fakeStore which contain code communicate with fakeStore
+----------------------------------------------------
+To able to request services
+spring have 2 things
+1 RestTemplate -> becoming deprecated
+2 web client -> latest bit complex.
+
+we will learn rest template
+
+---------------------------------------------------
+what @service does
+it create the object of service and keeps in ioc container so that
+when we create the controller it can do dependency injection
+
+---------------------------------------------------
+if we want to use some specific classes that spring provide us but the object is not present in ioc container
+in that case we use annotation like @configuration
+if some class is marked as config spring execute that class
+in initial build and calls all method of this class.
+whatever each method return it gets injected in ioc container as bean
+this allows us to use those object as dependency at multiple place
+
+@Bean means object for dependency injection
+---------------------------------------------------
+dependency injection
+
+creating object of bean we use
+when its written by us we use @component @service @repo @restcontroller
+when its written by spring or any internal class
+then we use @configuration
+for injecting or letting spring know we use @autowired
+----------------------------------------------------
+how does our request reaches controller GetMapping
+whenever client send some request it goes to dispatcher serverlet
+
+Dispatcher Serverlet its a central component
+Serverlet is a java class which takes http request do some
+processing and send some request
+
+first our request reaches to dispatcher serverlet
+after that it depends upon ds where to send the request
+ds it will communicate with some component
+
+how ds works-> it connect with mapping handler (it stores the pair of controller with the mapping )
+once mapping handler let ds know which controller need to call it calls
+that controller and then controller gives some responce
+that response will be passed on to ds to client output
+
+
+
+
+
+
+
