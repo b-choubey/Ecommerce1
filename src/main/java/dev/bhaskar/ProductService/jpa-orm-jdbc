@@ -1,0 +1,66 @@
+what are ORM JPA JDBC
+
+majorly source of data is data base
+JPA and ORM will apply on relational databases
+
+top most entity we have folder named "models"
+then we created file like product and category
+the inside we have class name product that contain id name price
+
+normally we create one db for one microservice
+
+package = database
+class/models = table
+attribute/class variable = column
+objects = rows
+
+steps to write code
+1 connect to data base
+2 write a query
+ex select * from user u where u.id=1
+
+1,anurag,+9
+8111 this type of data set is known as csv or result set
+where "," delimiter "CSV=comma separated value"
+
+3 write to convert query result in user object
+
+object relational mapping
+ORM which will help us in mapping to object
+tables = class/models
+row = objects
+it is concept or library
+
+Hibernate is example of ORM
+some other example Mybatis, JOOQ
+
+for using hibernate
+Instead of using hibernate directly we use interface which is implemented by hibernate
+so we can change from hibernate to jooq easily
+And the name of that interface is JPA java persistence api
+next thing what we use to connect to data base
+to connect database we use JDBC(java data base connector)
+example mysql driver or postgres driver
+-----------------------------------------------
+
+now we will write repo
+custom queries
+writing native queries
+we will add spring boot starter jpa dependencies
+its a super package contain everything related to jpa
+-----------------------------------------------
+so after connecting to postgres and creating data with password 2428@Bha
+we created a class name product in model
+but the attribute that FakeStoreProductDTO and product is same so what differentiate
+between product class and FakeStoreProductDTO class
+and let spring know its different we use specific annotation
+@Entity
+we have to add id for that table as in product class we are telling spring to create table
+now we have to annotate @Id which is our primary key
+
+** Always code to interface not implementation
+-----------------------------------------------
+representing inheritance cardinalities custom query
+
+
+

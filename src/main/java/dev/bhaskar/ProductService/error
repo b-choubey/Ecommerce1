@@ -1,0 +1,21 @@
+Error
+** these error code is sent by dispatcher serverlet that we have tpo handle
+with our code if we want to change those error code.
+
+There are types of error code we get
+1 the one starting with 2 ex 200 201 202
+these are success code
+2 one that start with 4 ex 404 401
+these are error stating that user have passed or requested bad
+known as bad request
+3 onr that start with 5 ex 501 500
+these are known as server error
+error with our code base or in server
+
+so if client sending some bad request like -1 as id
+if we directly dont handle the error it will 200 success with blank
+if we handle in controller with illegal argument then it will give 500 as server error
+but as this error is not related to our server its the bad request from the user
+we have to handle this error solely and change the return code from 500 to 40x or 404 as bad request
+
+-------------------------------------------------

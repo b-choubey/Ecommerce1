@@ -118,8 +118,38 @@ once mapping handler let ds know which controller need to call it calls
 that controller and then controller gives some responce
 that response will be passed on to ds to client output
 
+-----------------------------------------------------
+controller is exception handler for our project
+if something is not present we have to handle exception
+who is best to handle exception is waiter that is controller
+lets we user passes a id that is -1 which is not possible our normal
+code will gave 200 as response and success code with blank that is not correct
+we should be getting 404 with error like bad request
+we should be handling those exception in controller only
 
+----------------------------------------------------
+Lets see difference between getForObject and getForEntity
+as we see getForObject sends <T> while getForEntity return responseEntity<T>
 
+ In ResponseEntity<> its a  class defined in restController which extends HttpEntity
+ that means id normal return <T> only returns body this is super type it return both
+ body and http code combined
+
+so response entity will show the code but we have to show what went wrong
+like here we got the issue like bad request
+so for that we need to work with something like exception handler
+it will handle particularly type of exception
+-----------------------------------------------------
+In Model package we have created the product
+but we need one more model named category
+
+category will be one table product will be other table
+what is the cardinality between product and category
+
+product to category 1 product can belong to one category
+1 category can have multiple product
+product to category is m:1 many to one
+we need to build one more model named category
 
 
 
