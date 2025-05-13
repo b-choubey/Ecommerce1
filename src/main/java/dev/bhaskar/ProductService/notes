@@ -150,6 +150,13 @@ product to category 1 product can belong to one category
 1 category can have multiple product
 product to category is m:1 many to one
 we need to build one more model named category
+----------------------------------------------------
+As the audit column are same for product and category
+we can have base class for that
+also id is same for both
+----------------------------------------------------
+
+
 
 
 

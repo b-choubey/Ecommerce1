@@ -39,6 +39,11 @@ public class ProductController {
         List<Product> getAllProduct= productService.getAllProducts();
         return ResponseEntity.status(HttpStatus.OK).body(getAllProduct);
     }
+    @GetMapping("/product/description")
+    public ResponseEntity<List<Product>>getProductByDescription(@PathVariable("description") String description){
+        List<Product> getByDescription=productService.getProductByDesc(description);
+        return ResponseEntity.status(HttpStatus.OK).body(getByDescription);
+    }
     //**All below apis for FakeStore
     @GetMapping("/products/fake")
     public FakeStoreProductDTO[] getAllProductsFakeStore() {

@@ -62,5 +62,16 @@ now we have to annotate @Id which is our primary key
 -----------------------------------------------
 representing inheritance cardinalities custom query
 
+JPA is auto generating tool
+we have to make sure it support all use cases
+int many to many we create mapping table
+can i represent 1 to many or many to 1 by mapping table we can
+for product and category part we dont need that
+But jpa is created to support everything so it did both for us
+added category id to product table and also created mapping table
+mapping table also called lookup table named "category_products" although i dont
+need so i will delete it
 
+**if you want mapping table
+**convention over configuration read this article
 

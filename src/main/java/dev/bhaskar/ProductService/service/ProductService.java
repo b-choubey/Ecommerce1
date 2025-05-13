@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,6 +60,21 @@ public class ProductService {
     public List<Product> getAllProducts(){
         return productRepository.findAll();
     }
+    public List<Product> getProductByDesc(String  description) {
+        /*List<Product> products =productRepository.findAll();
+        List<Product>matchedProduct=new ArrayList<>();
+        for(Product product:products){
+            if(product.getDescription().equals(description)){
+                 matchedProduct.add(product);
+            }
+        }
+        return matchedProduct;*/
+        //here on top what we did we used the findAll method defined in the
+        //jpaRepo and filter out the one we needed
+        //while below we did is we created a custom method id jpa and directly used it
+        //jpa will implement that to
+        return productRepository.findAllByDescription(description);
+    }
 
     public FakeStoreProductDTO[] getALLProductsFromFakestore(){
         return fakeStoreClient.getAllProducts();
@@ -75,4 +91,6 @@ public class ProductService {
     public Boolean deleteProductById(int id){
         return fakeStoreClient.deleteProductById(id);
     }
+
+
 }
