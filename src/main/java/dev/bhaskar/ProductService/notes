@@ -155,6 +155,9 @@ As the audit column are same for product and category
 we can have base class for that
 also id is same for both
 ----------------------------------------------------
+Api versioning if we do some change we can add @getMapping("/v1/product") if we do
+some change we should maintain the version
+whenever we change the api contract. ("/something/vx/something")
 
 
 

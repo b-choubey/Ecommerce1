@@ -10,8 +10,7 @@ import java.time.LocalDateTime;
 @Setter
 @Entity // it makes different from FakeStoreProductDTO as this annotation tells spring to create table
 public class Product extends BaseModel {
-    @ManyToOne
-    private Category category;
+    
     private double price;
     private int quantity;
     private double rating;

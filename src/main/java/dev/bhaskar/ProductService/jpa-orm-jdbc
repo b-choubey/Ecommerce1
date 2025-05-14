@@ -74,4 +74,37 @@ need so i will delete it
 
 **if you want mapping table
 **convention over configuration read this article
-
+--------------------------------------------------
+Fetch type and mapping
+if product contain category, and also category contain product these
+are known as 2 way mapping
+if only one contain other than that is one way mapping
+Now question is how you decide which one is to use one way mapping or two way mapping
+it totally depend upon query pattern
+for example
+a-how many time if you select category and see the product inside it
+b-how many times you gonna select a product and see which category its belong to
+we will choose "a" we rarely open a product to see category
+we will choose category contain list of product
+why not both "a" and "b"
+if we choose both and want to fetch product(which contain category) inside will fetch category
+so in the process we made 2 data base call to fetch one product
+it will impact the performance due to 2 way mapping
+so we always prefer one way mapping
+there is cases is for 2 way mapping but very few if "a"::"b" is approx 50 50
+in one way mapping we will add category contain product
+but product wont contain category.
+-----------------------------------------------
+Fetch type
+we have two type of fetch type
+1 eager 2 lazy
+lets say we have 3 tables 1 category 2 product 3 review
+ in eager loading if i fetch category it will load product and product will load review
+ which all are not needed and will make fetching data slow
+ while in lazy loading it wont load review  we only give surface level but when we ask for
+ review then it will load review.
+ in lazy it will load until or unless we specifically ask for it.
+in lazy loading we have the review column but it wont fetch the data
+the moment i wanted to see review it will fetch that by firing api for that
+ideally we should never do eager loading we should always prefer lazy loading
+-----------------------------------------------

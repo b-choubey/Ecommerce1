@@ -1,18 +1,46 @@
 package dev.bhaskar.ProductService.service;
 
+import dev.bhaskar.ProductService.exeception.ProductNotFoundException;
 import dev.bhaskar.ProductService.model.Category;
+import dev.bhaskar.ProductService.model.Product;
+import dev.bhaskar.ProductService.repository.CategoryRepository;
 import dev.bhaskar.ProductService.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.crypto.spec.OAEPParameterSpec;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryService {
     @Autowired
-    ProductRepository productRepository;
+    private CategoryRepository categoryRepository;
 
-    public static List<Category> getCategory() {
-        List<Category> rsponse=productRepository.findAll();
+    public List<Category> getCategory() {
+       return categoryRepository.findAll();
     }
+    public Category addCategory(Category category){
+        return categoryRepository.save(category);
+    }
+    public Category getCategoryById(int id){
+        Optional<Category> categoryId= categoryRepository.findById(id);
+        if(categoryId.isPresent()){
+            return categoryRepository.findById(id).get();
+        }else {
+            throw new ProductNotFoundException("Category not found");
+        }
+
+    }
+    public boolean deleteCategory(int id){
+        Category category =getCategoryById(id);
+        categoryRepository.deleteById(id);
+        return true;
+    }
+    public Category updateCategoryById(int id,Category category){
+        Category categoryById=getCategoryById(id);
+        category.setId(id);
+        return categoryRepository.save(category);
+    }
+
 }
