@@ -2,6 +2,7 @@ package dev.bhaskar.ProductService.service;
 
 import dev.bhaskar.ProductService.client.FakeStoreClient;
 import dev.bhaskar.ProductService.dto.FakeStoreProductDTO;
+import dev.bhaskar.ProductService.dto.ProductProjection;
 import dev.bhaskar.ProductService.exeception.ProductNotFoundException;
 import dev.bhaskar.ProductService.model.Product;
 import dev.bhaskar.ProductService.repository.ProductRepository;
@@ -39,13 +40,14 @@ public class ProductService {
         productRepository.deleteById(productId);
         return true;
     }
+
     public Product getProduct(int productId){
         //only writing findById(productId) it will show error if you see in the class
         //we will be able to see that it's returning optional which means it can have value
         //or can be null so in that case we add .get()
         //.get() will give us option
         //or better way we add optional of product
-        //optional<Product> productOptional becasue as you see in that findById class there <T>
+        //optional<Product> productOptional because as you see in that findById class there <T>
         //which let us add our object
 
         //Product product=productRepository.findById(productId).get();
@@ -54,7 +56,7 @@ public class ProductService {
         if(productOptional.isPresent()){
             return productRepository.findById(productId).get();
         }else {
-            throw new ProductNotFoundException();
+            throw new ProductNotFoundException("product not found");
         }
     }
     public List<Product> getAllProducts(){
@@ -75,7 +77,9 @@ public class ProductService {
         //jpa will implement that to
         return productRepository.findAllByDescription(description);
     }
-
+    public ProductProjection getProductByProjection(String name) {
+        return productRepository.findFirstByName(name);
+    }
     public FakeStoreProductDTO[] getALLProductsFromFakestore(){
         return fakeStoreClient.getAllProducts();
     }
@@ -91,6 +95,7 @@ public class ProductService {
     public Boolean deleteProductById(int id){
         return fakeStoreClient.deleteProductById(id);
     }
+
 
 
 }

@@ -1,5 +1,9 @@
 package dev.bhaskar.ProductService.service;
 
+import dev.bhaskar.ProductService.dto.CategoryRequestDTO;
+import dev.bhaskar.ProductService.dto.CategoryResponseDTO;
+import dev.bhaskar.ProductService.exeception.CategoryNotFoundException;
+import dev.bhaskar.ProductService.exeception.DuplicateCategoryNameException;
 import dev.bhaskar.ProductService.exeception.ProductNotFoundException;
 import dev.bhaskar.ProductService.model.Category;
 import dev.bhaskar.ProductService.model.Product;
@@ -20,16 +24,22 @@ public class CategoryService {
     public List<Category> getCategory() {
        return categoryRepository.findAll();
     }
-    public Category addCategory(Category category){
+    public Category addCategoryService(CategoryRequestDTO categoryRequestDTO){
+        Category savedcategory=categoryRepository.findByName(categoryRequestDTO.getCategoryName())
+                .orElseThrow(
+                () -> new DuplicateCategoryNameException("Duplicate category name " + categoryRequestDTO.getCategoryName())
+
+        );//lambda expression
+        Category category=new Category();
+        category.setName(categoryRequestDTO.getCategoryName());
+        category.setDescription(categoryRequestDTO.getCategoryDescription());
         return categoryRepository.save(category);
     }
     public Category getCategoryById(int id){
-        Optional<Category> categoryId= categoryRepository.findById(id);
-        if(categoryId.isPresent()){
-            return categoryRepository.findById(id).get();
-        }else {
-            throw new ProductNotFoundException("Category not found");
-        }
+        Category savedCategoryId= categoryRepository.findById(id).orElseThrow(
+                () -> new CategoryNotFoundException("Category id not found " + id)
+        );
+        return savedCategoryId;
 
     }
     public boolean deleteCategory(int id){

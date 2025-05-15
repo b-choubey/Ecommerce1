@@ -1,5 +1,6 @@
 package dev.bhaskar.ProductService.repository;
 
+import dev.bhaskar.ProductService.dto.ProductProjection;
 import dev.bhaskar.ProductService.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -14,6 +15,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     //if I put my attribute and extra suffix ex findAllByDescriptionIgnoreCase
     //Jpa define for us and then create query according.
     List<Product>findAllByDescription(String description);
+    ProductProjection findFirstByName(String name);
     //for this check a link "Jpa query methods by spring"
     //how spring take care of this type of things
 }

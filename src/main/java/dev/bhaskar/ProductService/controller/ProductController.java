@@ -2,6 +2,7 @@ package dev.bhaskar.ProductService.controller;
 
 import dev.bhaskar.ProductService.client.FakeStoreClient;
 import dev.bhaskar.ProductService.dto.FakeStoreProductDTO;
+import dev.bhaskar.ProductService.dto.ProductProjection;
 import dev.bhaskar.ProductService.model.Product;
 import dev.bhaskar.ProductService.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,7 @@ public class ProductController {
         boolean deleteProduct=productService.deleteProduct(id);
         return ResponseEntity.status(HttpStatus.OK).body(deleteProduct);
     }
+
     @GetMapping("/product")
     public ResponseEntity<List<Product>>getProduct(){
         List<Product> getAllProduct= productService.getAllProducts();
@@ -43,6 +45,11 @@ public class ProductController {
     public ResponseEntity<List<Product>>getProductByDescription(@PathVariable("description") String description){
         List<Product> getByDescription=productService.getProductByDesc(description);
         return ResponseEntity.status(HttpStatus.OK).body(getByDescription);
+    }
+    @GetMapping("/product/v1/{name}")
+    public ResponseEntity<ProductProjection>getProductByProjection(@PathVariable("name") String name){
+        ProductProjection getByProjection=productService.getProductByProjection(name);
+        return ResponseEntity.status(HttpStatus.OK).body(getByProjection);
     }
     //**All below apis for FakeStore
     @GetMapping("/products/fake")

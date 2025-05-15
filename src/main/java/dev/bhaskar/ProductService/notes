@@ -158,8 +158,17 @@ also id is same for both
 Api versioning if we do some change we can add @getMapping("/v1/product") if we do
 some change we should maintain the version
 whenever we change the api contract. ("/something/vx/something")
+---------------------------------------------------
+Lets say we put all the value for product model but for specific reason we have to send only the
+name and description not all value to frontend how to achieve that
+we should create separate Dto for that
+For that we have projections we can create separate projection
 
+Summary is that if we need limited information of product what we can do is create DTO which fetcg all the
+data as it done for fakeStore and we can read that data and create a projection with the limited data and return that
+Dto instead of model
 
+---------------------------------------------------
 
 
 
