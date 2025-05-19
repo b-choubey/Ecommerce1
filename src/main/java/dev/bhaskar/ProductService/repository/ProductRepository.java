@@ -1,6 +1,7 @@
 package dev.bhaskar.ProductService.repository;
 
 import dev.bhaskar.ProductService.dto.ProductProjection;
+import dev.bhaskar.ProductService.model.Category;
 import dev.bhaskar.ProductService.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -18,6 +19,10 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     ProductProjection findFirstByName(String name);
     //for this check a link "Jpa query methods by spring"
     //how spring take care of this type of things
+    //we can not pass findAllByCategoryId
+    //because product does not have any category id as it's a foreign key so we are going through
+    //category object
+    //List<Product> findAllByCategory(Category category);
 }
 //Extending JpaRepository adds all fundamental crud operation methods in
 // ProductRepository interface we don't need to implement those methods spring data jpa will do it for Us,

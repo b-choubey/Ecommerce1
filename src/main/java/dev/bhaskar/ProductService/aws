@@ -1,0 +1,13 @@
+AWS - core is pay per use and availability when needed for autoscaling
+
+Server any thing like laptop machine but difference is normal server is made for only running our code
+or we can sey anything which run our code is server.
+
+Auto Scaling increase server and decrease server on demand automatically
+pay for what you use
+they introduced EC2 or ECC elastic compute cloud
+we also need storage data base they build
+RDS relational data base storage for sql
+DynamoDB for no-sql
+
+create AWS account and RDS account

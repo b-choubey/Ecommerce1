@@ -52,5 +52,12 @@ public class CategoryService {
         category.setId(id);
         return categoryRepository.save(category);
     }
+    //as product does not contain any category its one way mapped what we can do is let category service talk to product service anf
+    //fetch the data from there
+    public List<Product> getAllProductBycategory(int categoryId){
+        Category category=getCategoryById(categoryId);
+        List<Product>savedProducts=category.getProducts();
+        return savedProducts;
+    }
 
 }

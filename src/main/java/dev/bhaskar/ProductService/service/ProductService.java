@@ -4,7 +4,9 @@ import dev.bhaskar.ProductService.client.FakeStoreClient;
 import dev.bhaskar.ProductService.dto.FakeStoreProductDTO;
 import dev.bhaskar.ProductService.dto.ProductProjection;
 import dev.bhaskar.ProductService.exeception.ProductNotFoundException;
+import dev.bhaskar.ProductService.model.Category;
 import dev.bhaskar.ProductService.model.Product;
+import dev.bhaskar.ProductService.repository.CategoryRepository;
 import dev.bhaskar.ProductService.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,9 @@ public class ProductService {
     //it will add di for ProductRepository
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private CategoryService categoryService;
     //now we will create 4 methods
     public Product saveProduct(Product product){
         //to save the product we will call save method of ProductRepository which is
@@ -32,6 +37,7 @@ public class ProductService {
     }
     public Product updateProduct(Product newproduct,int productId){
         Product savedProduct=getProduct(productId);
+        //id should be same if i change the id it will ot be the same it will act like create product
         newproduct.setId(productId);
         Product updatedProduct= productRepository.save(newproduct);
         return updatedProduct;
@@ -40,7 +46,13 @@ public class ProductService {
         productRepository.deleteById(productId);
         return true;
     }
-
+    public List<Product> getAllProductByCategoryId(int categoryId){
+        //As we can not guarantee that categoryId that we are passing will be present so we are taking care
+        //of that with category service we @Autowired categoryService so that the object inside it will let us know
+        //if not present categoryId categoryService will take care of that
+        List<Product>product=categoryService.getAllProductBycategory(categoryId);
+        return product;
+    }
     public Product getProduct(int productId){
         //only writing findById(productId) it will show error if you see in the class
         //we will be able to see that it's returning optional which means it can have value
