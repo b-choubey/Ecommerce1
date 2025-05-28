@@ -11,3 +11,13 @@ RDS relational data base storage for sql
 DynamoDB for no-sql
 
 create AWS account and RDS account
+check for any db instances running or not
+search option create data base.
+
+Show only versions that support the Multi-AZ DB cluster
+here az means availability zone. it will present in different availability zone or on single place
+this is not backup this is just duplicate data. its like we have distributed data in different zone for lesser geographical distance
+data base have engine that is different version they execute query what we write
+-------------------------------------------------------
+
+Security Groups

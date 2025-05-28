@@ -54,7 +54,7 @@ and json need object and it will be created by class
 
 how will we create that response dto
 first we checked the product of fake store and look for what
-all needed to create is there any other json inside the responce of
+all needed to create is there any other json inside the response of
  main json
  its rating so we create rating class and in rating class
 we will give all the attribute
@@ -100,7 +100,7 @@ creating object of bean we use
 when its written by us we use @component @service @repo @restcontroller
 when its written by spring or any internal class
 then we use @configuration
-for injecting or letting spring know we use @autowired
+for injecting or letting spring know we use @Autowired
 ----------------------------------------------------
 how does our request reaches controller GetMapping
 whenever client send some request it goes to dispatcher serverlet
@@ -115,7 +115,7 @@ ds it will communicate with some component
 
 how ds works-> it connect with mapping handler (it stores the pair of controller with the mapping )
 once mapping handler let ds know which controller need to call it calls
-that controller and then controller gives some responce
+that controller and then controller gives some response
 that response will be passed on to ds to client output
 
 -----------------------------------------------------
@@ -164,7 +164,7 @@ name and description not all value to frontend how to achieve that
 we should create separate Dto for that
 For that we have projections we can create separate projection
 
-Summary is that if we need limited information of product what we can do is create DTO which fetcg all the
+Summary is that if we need limited information of product what we can do is create DTO which fetch all the
 data as it done for fakeStore and we can read that data and create a projection with the limited data and return that
 Dto instead of model
 

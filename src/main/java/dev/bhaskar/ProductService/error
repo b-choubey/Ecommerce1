@@ -1,5 +1,5 @@
 Error
-** these error code is sent by dispatcher serverlet that we have tpo handle
+** these error code is sent by dispatcher serverlet that we have to handle
 with our code if we want to change those error code.
 
 There are types of error code we get
