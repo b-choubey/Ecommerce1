@@ -3,6 +3,8 @@ package dev.bhaskar.ProductService.service;
 import dev.bhaskar.ProductService.client.FakeStoreClient;
 import dev.bhaskar.ProductService.dto.FakeStoreProductDTO;
 import dev.bhaskar.ProductService.dto.ProductProjection;
+import dev.bhaskar.ProductService.dto.ProductRequestDTO;
+import dev.bhaskar.ProductService.exeception.CategoryNotFoundException;
 import dev.bhaskar.ProductService.exeception.ProductNotFoundException;
 import dev.bhaskar.ProductService.model.Category;
 import dev.bhaskar.ProductService.model.Product;
@@ -24,14 +26,32 @@ public class ProductService {
     //it will add di for ProductRepository
     @Autowired
     private ProductRepository productRepository;
-
+    //here we can not add categoryService as dependency  it will become circular dependency
+    //so we will use categoryRepository
     @Autowired
-    private CategoryService categoryService;
+    private CategoryRepository categoryRepository;
+
     //now we will create 4 methods
-    public Product saveProduct(Product product){
+    public Product saveProduct(ProductRequestDTO productRequestDTO){
         //to save the product we will call save method of ProductRepository which is
         //implementing JpaRepository which contain save class
+        Category savedCategory=categoryRepository.findById(productRequestDTO.getCategoryId()).orElseThrow(
+                () -> new CategoryNotFoundException("Category not found with id " )
+        );
+        Product product = new Product();
+        product.setName(productRequestDTO.getName());
+        product.setDescription(productRequestDTO.getDescription());
+        product.setPrice(productRequestDTO.getPrice());
+        product.setQuantity(productRequestDTO.getQuantity());
+        product.setRating(productRequestDTO.getRating());
+        //now we have to add category, but we can not directly add category or set category as product
+        // does not contain any category information so first we will check if category exist or not
+        //before that we will save the product
+
         Product savedProduct=productRepository.save(product);
+
+        savedCategory.getProducts().add(product);
+        categoryRepository.save(savedCategory);
         return savedProduct;
 
     }
@@ -46,13 +66,13 @@ public class ProductService {
         productRepository.deleteById(productId);
         return true;
     }
-    public List<Product> getAllProductByCategoryId(int categoryId){
-        //As we can not guarantee that categoryId that we are passing will be present so we are taking care
-        //of that with category service we @Autowired categoryService so that the object inside it will let us know
-        //if not present categoryId categoryService will take care of that
-        List<Product>product=categoryService.getAllProductBycategory(categoryId);
-        return product;
-    }
+//    public List<Product> getAllProductByCategoryId(int categoryId){
+//        //As we can not guarantee that categoryId that we are passing will be present so we are taking care
+//        //of that with category service we @Autowired categoryService so that the object inside it will let us know
+//        //if not present categoryId categoryService will take care of that
+//        List<Product>product=categoryService.getAllProductBycategory(categoryId);
+//        return product;
+//    }
     public Product getProduct(int productId){
         //only writing findById(productId) it will show error if you see in the class
         //we will be able to see that it's returning optional which means it can have value

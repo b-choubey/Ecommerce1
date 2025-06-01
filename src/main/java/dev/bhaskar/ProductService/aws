@@ -20,4 +20,16 @@ this is not backup this is just duplicate data. its like we have distributed dat
 data base have engine that is different version they execute query what we write
 -------------------------------------------------------
 
-Security Groups
+Security Groups - if we have more than one part ec2 connected database we will not allow which ec2
+call other db
+for each instance/product i aws
+i/p input for inbound traffic and
+o/p output for outbound traffic
+I can create different security group(collection of rule ) and associate them with
+specific instance and specific product. no need to duplicate that again again
+
+-------------------------------------------------------
+after setting the RDS we copy we created the database in intellij
+and after changing the value of application properties data base got created in rds but
+we can not see any data base in rds for that we have to connect that data base somewhere like
+intellij or dbver

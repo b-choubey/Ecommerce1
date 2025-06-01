@@ -1,10 +1,7 @@
 package dev.bhaskar.ProductService.controller;
 
 import dev.bhaskar.ProductService.client.FakeStoreClient;
-import dev.bhaskar.ProductService.dto.FakeStoreProductDTO;
-import dev.bhaskar.ProductService.dto.ProductProjection;
-import dev.bhaskar.ProductService.dto.ProductResponseDTO;
-import dev.bhaskar.ProductService.dto.ProductdescriptionDTO;
+import dev.bhaskar.ProductService.dto.*;
 import dev.bhaskar.ProductService.model.Product;
 import dev.bhaskar.ProductService.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,26 +18,26 @@ public class ProductController {
     private ProductService productService;
     //**Now we will create apis for our own database names demo
     //now here we will add get product from category
-    @GetMapping("/product/category/{id}")
-    public ResponseEntity<List<ProductResponseDTO>> getAllProductsByCategory(@PathVariable("id") int categoryId) {
-        List<Product> saveProducts=productService.getAllProductByCategoryId(categoryId);
-        List<ProductResponseDTO> productResponseDTOS=new ArrayList<>();
-        for(Product product:saveProducts){
-            ProductResponseDTO productResponseDTO=new ProductResponseDTO(
-                    product.getPrice(),
-                    product.getName(),
-                    product.getDescription(),
-                    product.getRating()
-            );
-
-        }
-        return ResponseEntity.ok(productResponseDTOS);
-    }
+//    @GetMapping("/product/category/{id}")
+//    public ResponseEntity<List<ProductResponseDTO>> getAllProductsByCategory(@PathVariable("id") int categoryId) {
+//        List<Product> saveProducts=productService.getAllProductByCategoryId(categoryId);
+//        List<ProductResponseDTO> productResponseDTOS=new ArrayList<>();
+//        for(Product product:saveProducts){
+//            ProductResponseDTO productResponseDTO=new ProductResponseDTO(
+//                    product.getPrice(),
+//                    product.getName(),
+//                    product.getDescription(),
+//                    product.getRating()
+//            );
+//
+//        }
+//        return ResponseEntity.ok(productResponseDTOS);
+//    }
     @PostMapping("/product")
-    public ResponseEntity<Product>createProduct(@RequestBody Product product){
+    public ResponseEntity<Product>createProduct(@RequestBody ProductRequestDTO productRequestDTO){
         //if it's incoming it is always a request
         //if it is outgoing then it is a response
-        Product savedProduct = productService.saveProduct(product);
+        Product savedProduct = productService.saveProduct(productRequestDTO);
         return ResponseEntity.status(HttpStatus.OK).body(savedProduct);
     }
     @GetMapping("/product/{id}")
